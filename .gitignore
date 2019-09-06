@@ -67,3 +67,7 @@ package-lock.json
 env.js
 
 *.jpeg
+
+*.jpg 
+
+*.png
