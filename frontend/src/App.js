@@ -12,7 +12,6 @@ import SinglePostPage from './pages/Feed/SinglePost/SinglePost';
 import LoginPage from './pages/Auth/Login';
 import SignupPage from './pages/Auth/Signup';
 import './App.css';
-import auth from './pages/Auth/Auth';
 
 class App extends Component {
   state = {
