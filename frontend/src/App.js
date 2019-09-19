@@ -61,13 +61,17 @@ class App extends Component {
     this.setState({ authLoading: true });
     const graphqlQuery = {
       query: `
-        {
-          login(email:"${authData.email}",password:"${authData.password}"){
+        query UserLogin($email: String!, $password: String!) {
+          login(email: $email, password: $password){
             token
             userId
           }
         }
-      `
+      `,
+      variables: {
+        email: authData.email,
+        password: authData.password
+      }
     };
     fetch('http://localhost:8080/graphql', {
       method: 'POST',
@@ -119,13 +123,18 @@ class App extends Component {
     this.setState({ authLoading: true });
     const graphqlQuery = {
       query: `
-      mutation{
-        createUser(userInput:{email:"${authData.signupForm.email.value}", name:"${authData.signupForm.password.value}", password:"${authData.signupForm.name.value}"}){
-          _id
-          email
+        mutation CreateNewUser($email: String!, $name: String!, $password: String!) {
+          createUser(userInput: {email: $email, name: $name, password: $password}){
+            _id
+            email
+          }
         }
+      `,
+      variables: {
+        email: authData.signupForm.email.value,
+        name: authData.signupForm.password.value,
+        password: authData.signupForm.name.value
       }
-      `
     };
     fetch('http://localhost:8080/graphql', {
       method: 'POST',
